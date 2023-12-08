@@ -16,8 +16,11 @@ def preprocess_text(text):
     text = text.replace("^", "")
 
     # Remove \ characters, except for \n
-    text = text.replace("\\", "")  # First remove all \
-    text = text.replace("n", "\\n")  # Then restore \n
+    text = text.replace("\\n", "<NEWLINE>")
+
+    text = text.replace("\\", "")
+
+    text = text.replace("<NEWLINE>", "\n")
 
     return text
 
@@ -37,11 +40,11 @@ def csv_to_jsonl_and_save(file_path, output_path):
             f.write(json.dumps(record, ensure_ascii=False) + '\n')
 
 
-# Apply the function to the provided CSV file
-file_path = 'test.csv'
+# 변환할 파일 명 혹은 경로 변경해주기
+file_path = 'transformedQ_RAG_data.csv'
 
-# Specify the output path for the JSONL file
-output_path = 'processed_data.jsonl'
+# 최종적으로 저장할 jsonl 파일 이름 정하기
+output_path = 'transformedQ_RAG_data.jsonl'
 
 # Apply the function to save the processed data as a JSONL file
 csv_to_jsonl_and_save(file_path, output_path)
