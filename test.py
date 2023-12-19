@@ -1,3 +1,7 @@
+'''
+modified: 12.19, 2023
+author: Kim Ji Woo 
+'''
 import pandas as pd
 import requests
 import csv
